@@ -26,7 +26,7 @@ LDFLAGS		+= --static -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group \
 
 -include local.mk
 
-all: lib `eval.elf
+all: lib eval.elf
 
 lib:
 	@if [ ! "`ls -A $(OPENCM3_DIR)`" ] ; then \
@@ -40,9 +40,6 @@ lib:
 		exit 1; \
 		fi
 	make -C $(OPENCM3_DIR)
-
-%.bin: %.elf
-	$(OBJCOPY) -Obinary $(*).elf $(*).bin
 
 %.elf: %.o $(OBJS) $(LDSCRIPT)
 	$(LD) -o $(*).elf $(*).o $(OBJS) $(LDFLAGS) -l$(LIBNAME)
