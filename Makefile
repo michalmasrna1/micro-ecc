@@ -1,7 +1,7 @@
 PREFIX	?= arm-none-eabi
 CC		= $(PREFIX)-gcc-14.2.1
 LD		= $(PREFIX)-gcc-14.2.1
-OPENCM3_DIR = ..libopencm3
+OPENCM3_DIR = ../libopencm3
 
 LDSCRIPT   = stm32f405x6_CCM.ld
 LIBNAME    = opencm3_stm32f4
