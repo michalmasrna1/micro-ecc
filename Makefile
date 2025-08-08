@@ -4,7 +4,7 @@ LD		= $(PREFIX)-gcc-14.2.1
 OBJCOPY	= $(PREFIX)-objcopy
 OBJDUMP	= $(PREFIX)-objdump
 GDB		= $(PREFIX)-gdb
-OPENCM3_DIR = libopencm3
+OPENCM3_DIR = ..libopencm3
 
 LDSCRIPT   = stm32f405x6_CCM.ld
 LIBNAME    = opencm3_stm32f4
