@@ -1,7 +1,8 @@
 #include "uECC.h"
+#include "pcg_basic.h"
 #include <stdint.h>
 
-// TODO: Decide on the final implementation
+// Taken from sca25519
 int myrandombytes(unsigned char *x, unsigned xlen) {
   union {
     unsigned char aschar[4];
@@ -9,7 +10,7 @@ int myrandombytes(unsigned char *x, unsigned xlen) {
   } random;
 
   while (xlen > 4) {
-    random.asint = 0xdeadbeef;  // Originally, there was a call to get_random_blocking()
+    random.asint = pcg32_random();
     *x++ = random.aschar[0];
     *x++ = random.aschar[1];
     *x++ = random.aschar[2];
@@ -17,7 +18,7 @@ int myrandombytes(unsigned char *x, unsigned xlen) {
     xlen -= 4;
   }
   if (xlen > 0) {
-    for (random.asint = 0xdeadbeef; xlen > 0; --xlen) {  // Originally, there was a call to get_random_blocking(
+    for (random.asint = pcg32_random(); xlen > 0; --xlen) {
       *x++ = random.aschar[xlen - 1];
     }
   }
@@ -51,6 +52,7 @@ const uint8_t public_key[40] = {0x49, 0xB4, 0x1E, 0x0E, 0x9C, 0x03, 0x69, 0xC2,
                                    0x11, 0x1C, 0x3E, 0xDC, 0x0E, 0x9C, 0x8F, 0x83};
 
 int main(void) {
+  pcg32_srandom(0xdeadbeef, 0xdeadbeef);
   uECC_set_rng(&myrandombytes);
   // TODO: decide on which curve to use
   const struct uECC_Curve_t * curve = uECC_secp160r1();
