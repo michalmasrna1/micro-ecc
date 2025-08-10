@@ -8,7 +8,7 @@ LDSCRIPT   = stm32f405x6_CCM.ld
 LIBNAME    = opencm3_stm32f4
 ARCH_FLAGS = -mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16
 DEFINES    = -DSTM32F4 -DCORTEX_M4 -D__thumb__
-OBJS	   = uECC.o $(PCG_DIR)/pcg_basic.o
+OBJS	   = uECC.o $(PCG_DIR)/pcg_basic.o randombytes.o
 
 
 CFLAGS		+= -g -O2 \
