@@ -1,6 +1,6 @@
 PREFIX	?= arm-none-eabi
-CC		= $(PREFIX)-gcc-14.2.1
-LD		= $(PREFIX)-gcc-14.2.1
+CC		= $(PREFIX)-gcc-14.3.1
+LD		= $(PREFIX)-gcc-14.3.1
 OPENCM3_DIR = ../libopencm3
 PCG_DIR = ../pcg-c-basic
 
